@@ -1,8 +1,8 @@
 import React from "react";
 import Chart from "chart.js/auto";
-import { Bar } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 
-const BarChart = (props) => {
+const DoughnutChart = (props) => {
   const { Datachart, labels } = props;
   const BackgroundArray = [];
   let i;
@@ -16,7 +16,6 @@ const BarChart = (props) => {
       BackgroundArray.push("#ff9500");
     }
   }
-
 
   const data = {
     labels: labels,
@@ -39,40 +38,34 @@ const BarChart = (props) => {
       {
         label: "",
         backgroundColor: BackgroundArray,
-        borderColor: "rgb(255, 99, 132)",
         data: Datachart,
+        legend: {
+          position: 'right',
+        },
       },
     ],
-    options: {
-      datalabels: {
-        display: false,
-      },
-    }
   };
 
   const options = {
     plugins: {
       legend: {
-        display: false,
-        position: 'right',
-        rtl: true,
+        display: true,
+        position: 'bottom',
+        ltr: true,
         labels: {
           usePointStyle: true,
           pointStyle: 'circle',
           padding: 20,
-          font: {
-            size: 8
-          }
         }
       }
     },
   }
   return (
     <div className="cartitem">
-      <Bar data={data} options={options} />
+      <Doughnut data={data} options={options} />
     </div>
   );
 };
 
-export default BarChart;
+export default DoughnutChart;
 
