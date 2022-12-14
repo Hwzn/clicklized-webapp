@@ -5,31 +5,35 @@ import NotesOffer from './notes';
 function RequestDatatBottom() {
 
   return (
-    <div className='requestdetailsbottom'>
+    <div className='offerdetailsbottom'>
       <div className='screenone'>
 
 
-        <div className="requestdetailsbottom__data">
-          
-              <ItemOffer/>
-              <br/>
-              <ItemOffer/>
-              <br/>
-              <ItemOffer/>
-              <br/>
-              <ItemOffer/>
-              <br/>
-              <ItemOffer/>
-              <br/>
-              <NotesOffer/>
+        <div className="offerdetailsbottom__data">
 
-              <br />
-              <div className='end'>
+          <ItemOffer Item={"Item 1"}/>
+          <br />
+          <ItemOffer Item={"Item 2"}/>
+          <br />
+          <ItemOffer Item={"Item 3"}/>
+          <br />
+          <ItemOffer Item={"Item 4"}/>
+          <br />
+          <ItemOffer Item={"Item 5"}/>
+          <br />
+          <NotesOffer />
 
-              <button type='button' className='btn btn-next button-active'>
-              Send offer
-              </button>
+          <br />
+          <div className='end'>
+            <div className="row">
+              <div className="col-12">
+
+                <button type='button' className='btn button-active'>
+                  Send offer
+                </button>
               </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

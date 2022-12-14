@@ -8,7 +8,8 @@ import { useContext } from 'react';
 
 function Form(props) {
     const {Statedata,clickedLatLng, setClickedLatLng,screnonedataone ,AddImagesfiles ,
-        imagesfiles,AddImageslogo,imageslogo ,RemoveImagesfiles ,RemoveImageslogo}=props;
+        imagesfiles,AddImageslogo,imageslogo ,RemoveImagesfiles ,RemoveImageslogo,
+        address,setAddress ,showaddress}=props;
     const authcontext = useContext(Authcontext);
     const setNumberrequest = authcontext.setNumberrequest;
     const setItemsrequest = authcontext.setItemsrequest;
@@ -38,7 +39,11 @@ function Form(props) {
         return <form onSubmit={props.handleSubmit}>
             <Inputquotations errors={props.errors} />
             <InputItems values={props.values} errors={props.errors} />
-            <Inputaddress errors={props.errors} />
+            <Inputaddress errors={props.errors} 
+            address={address} setAddress={setAddress}/>
+            {showaddress === false ? <span className='errorfiled'>Address Is Required</span>:""}
+            <br/>
+            <br/>
             <InputIndustry errors={props.errors} />
             <Inputday data={props} />
             <Inputinsurance Data={props} />
@@ -47,7 +52,7 @@ function Form(props) {
             <InputFiles AddImagesfiles={AddImagesfiles} imagesfiles={imagesfiles}
             AddImageslogo={AddImageslogo} imageslogo={imageslogo} RemoveImagesfiles={RemoveImagesfiles}
             RemoveImageslogo={RemoveImageslogo}/>
-            <ModalMap clickedLatLng={clickedLatLng} setClickedLatLng={setClickedLatLng}/>
+            <ModalMap clickedLatLng={clickedLatLng} setClickedLatLng={setClickedLatLng} setAddress={setAddress}/>
             <div className='end'>
                 <button 
                 className={imagesfiles.length === 0 || imageslogo === null? 
@@ -61,10 +66,9 @@ function Form(props) {
     const schema = () => {
         const schema = Yup.object().shape({
             numberrequired: Yup.string().max(5, 'Too Long!').required("Number Required"),
-            address: Yup.string().required("Address Required"),
             day: Yup.string().required("Day Is Required"),
             items: Yup.array()
-            .min(2, "You need at least one Item")
+            .min(1, "You need at least one Item")
             .required(""),
             industry:Yup.string().required("Industry Is Required"),
         });

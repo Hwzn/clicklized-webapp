@@ -12,7 +12,7 @@ function ModelEditprofile(props) {
             <div className="modal-content">
                 <div className="modal-header">
                     <h5 className="modal-title" id="modeleditprofilebuyerLabel">
-                    Edit Company Information
+                    {language === "Ar" ?"تعديل معلومات الشركة":"Edit Company Information"}
                     </h5>
                 </div>
 

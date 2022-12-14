@@ -3,7 +3,7 @@ import IconSavemodal from "../../images/icon/savemodalicon.png";
 import IconClosemodal from "../../images/icon/closemodal.png";
 
 function SaveData(props) {
-    const {toggolemodal ,setToggolemodal ,SendData}=props
+    const {toggolemodal ,setToggolemodal ,SendData ,CansalchingImage}=props
     return (
         <div className={'modalsavedata'}>
 
@@ -27,7 +27,7 @@ function SaveData(props) {
                     onClick={SendData}>Yes</button>
                     
                     <button type='button' className='btn btn-cancel'
-                    onClick={()=>setToggolemodal(false)}>Cancel</button>
+                    onClick={CansalchingImage}>Cancel</button>
 
                 </div>
             </div>

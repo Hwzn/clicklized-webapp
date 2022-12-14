@@ -53,9 +53,25 @@ export function InputItems(props) {
                       <label htmlFor={`items.${index}.quantity`}>Quantity</label>
                       <Field
                         name={`items.${index}.quantity`}
+                        maxLength={4}
                         placeholder="Enter Quantity"
-                        type="text"
-                        className={"form-control"} />
+                        type={"text"}
+                        //type={values.items[index].quantity === "" ?"number":"text"}
+                        className={"form-control"} 
+                        disabled = {values.items[index].item_id === ""? "disabled" : ""}
+                        pattern="^[0-9]*[.,]?[0-9]*$" 
+                        onKeyUp={(e) => {
+                          if(e.key === "Enter"){
+                            if(values.items[index].quantity === "" ){
+                              return false;
+                            }else{
+                              unshift({ item_id: '', quantity: '' })
+                            }
+                          }
+                        }
+                        }
+                        />
+
                     </div>
                     <div
                       className={"inputform_close"}>
@@ -67,6 +83,7 @@ export function InputItems(props) {
                         Remove Item
                       </button>
                     </div>
+                    
                     <button
                       id={values.items[index].item_id === "" ||
                         values.items[index].quantity === "" ? "button-disabled" : "button-active"}
@@ -77,6 +94,7 @@ export function InputItems(props) {
                       <img src={AddItemIcon} alt="Add Item Icon" />
                       Add new item
                     </button>
+                     
                   </div>
                 ))}
 
@@ -94,21 +112,27 @@ export function InputItems(props) {
 
 
 export function Inputaddress(props) {
-  const { errors } = props;
+  const { errors ,address , setAddress } = props;
+  const authcontext = useContext(Authcontext);
+  const setAddressrequest = authcontext.setAddressrequest;
   return (
     <div className='inputform'>
       <h6>Address</h6>
       <label className="form-label">Required Delivery Location</label>
       <Field type="textarea" component="textarea"
         className={errors.address ? "form-control is-invabuttond" : "form-control"}
-        placeholder="Enter Required Delivery Location" name="address" />
+        placeholder="Enter Required Delivery Location" name="address" value={address}
+        onChange={(e)=>{
+          setAddress(e.target.value)
+          setAddressrequest(e.target.value)
+        }
+        }/>
       <button type='button' className='btn addloction'
         data-bs-toggle="modal" data-bs-target="#modalmap">
         <img src={IconLoction} alt="" />
         Choose location on map
       </button>
 
-      <ErrorMessage name="address" component="span" className='errorfiled' />
     </div>
   )
 };

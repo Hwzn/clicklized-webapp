@@ -2,7 +2,7 @@ import React from 'react';
 import Loction from './loction';
 
 function ModalMap(props) {
-    const {clickedLatLng, setClickedLatLng}=props;
+    const {clickedLatLng, setClickedLatLng ,setAddress}=props;
 
     const removeData=()=>{
         setClickedLatLng(null);
@@ -18,7 +18,7 @@ function ModalMap(props) {
          onClick={removeData}></button>
       </div>
       <div className="modal-body">
-      <Loction clickedLatLng={clickedLatLng} setClickedLatLng={setClickedLatLng}/>
+      <Loction clickedLatLng={clickedLatLng} setClickedLatLng={setClickedLatLng} setAddress={setAddress}/>
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-save" data-bs-dismiss="modal">Save changes</button>
