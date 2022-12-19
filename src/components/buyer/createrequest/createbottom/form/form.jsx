@@ -21,6 +21,7 @@ function Form(props) {
     const setDayrequest = authcontext.setDayrequest; 
      
      
+  const language = authcontext.language;
      
      const onSubmit = (values) => {
          setNumberrequest(values.numberrequired);
@@ -41,7 +42,9 @@ function Form(props) {
             <InputItems values={props.values} errors={props.errors} />
             <Inputaddress errors={props.errors} 
             address={address} setAddress={setAddress}/>
-            {showaddress === false ? <span className='errorfiled'>Address Is Required</span>:""}
+            {showaddress === false ? <span className='errorfiled'>
+              {language === "Ar" ? "العنوان مطلوب" : "Address Is Required"}
+            </span>:""}
             <br/>
             <br/>
             <InputIndustry errors={props.errors} />

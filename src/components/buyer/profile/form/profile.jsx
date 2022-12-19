@@ -173,9 +173,13 @@ function Formprofile(props) {
                     {message === "" ? "" : <span className='errorfiled'>{message}</span>}
                     <div className='end'>
                         <button className={'btn btn-send button-active'}
-                            type="submit" >Save</button>
+                            type="submit" >
+                            {language === "Ar" ?"حفظ":"Save"}
+                            </button>
                         <button type="button" className="btn btn-cancel"
-                            data-bs-dismiss="modal">Cancel</button>
+                            data-bs-dismiss="modal">
+                            {language === "Ar" ?"ألغاء":"Cancel"}
+                            </button>
                     </div>
                 </div>
 

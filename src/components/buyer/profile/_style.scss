@@ -553,7 +553,6 @@
 
       .btn-send {
         background-color: #e9d173;
-        margin-right: 15px;
         color: #231f20;
       }
 
@@ -748,6 +747,17 @@
       }
     }
   }
+  #modeleditprofilebuyer {
+    .modal-body {
+      direction: ltr;
+      .end {
+        .btn-send {
+          margin-right: 15px;
+        }
+      }
+    }
+  
+  }
 }
 .Ar{
   .myprofile {
@@ -827,6 +837,17 @@
   
       }
     }
+  }
+  #modeleditprofilebuyer {
+    .modal-body {
+      direction: rtl;
+      .end {
+        .btn-cancel {
+          margin-right: 15px;
+        }
+      }
+    }
+  
   }
 }
 // 9- Style MyProfile Page To Media Queris 992px.

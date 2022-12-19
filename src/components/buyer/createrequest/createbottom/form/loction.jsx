@@ -7,33 +7,34 @@ import axios from "axios";
 
 
 function Loction(props) {
-  const {clickedLatLng, setClickedLatLng, setAddress}=props;
+  const { clickedLatLng, setClickedLatLng, setAddress } = props;
   const authcontext = useContext(Authcontext);
   const setAddressrequest = authcontext.setAddressrequest,
-  centerrequest = authcontext.centerrequest,
-  setCenterrequest = authcontext.setCenterrequest;
-  const [center, setCenter] = useState({ lat: centerrequest.lat , lng: centerrequest.lng });
+    centerrequest = authcontext.centerrequest,
+    setCenterrequest = authcontext.setCenterrequest;
+  const [center, setCenter] = useState({ lat: centerrequest.lat, lng: centerrequest.lng });
   const APikeygoogle = "AIzaSyBn3NtsJ5lgHSIxUJ4AuqAMm2RXldDDjN8";
   const [toggolestyle, setToggolestyle] = useState("")
   const [numberzoom, setNumberzoom] = useState(3);
-  
+
+  const language = authcontext.language;
 
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyBn3NtsJ5lgHSIxUJ4AuqAMm2RXldDDjN8"
   });
 
-  const onClick=(e)=>{
+  const onClick = (e) => {
     const value = e.latLng.toJSON();
     setClickedLatLng(value);
     setCenter({ lat: value.lat, lng: value.lng })
     setCenterrequest({ lat: value.lat, lng: value.lng })
-   fetchLocationName(value.lat,value.lng);
-   setNumberzoom(15)
-   setToggolestyle("hide")
+    fetchLocationName(value.lat, value.lng);
+    setNumberzoom(15)
+    setToggolestyle("hide")
   }
-  
-  const fetchLocationName = async (lat,lng) => {
+
+  const fetchLocationName = async (lat, lng) => {
     await fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&sensor=true&key=${APikeygoogle}`
     )
@@ -43,9 +44,9 @@ function Loction(props) {
         setAddress(responseJson.results[0].formatted_address);
       });
 
-    }
+  }
 
-    
+
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
@@ -56,8 +57,8 @@ function Loction(props) {
   const showPosition = (position) => {
     setCenter({ lat: position.coords.latitude, lng: position.coords.longitude })
     setCenterrequest({ lat: position.coords.latitude, lng: position.coords.longitude })
-   setClickedLatLng(center);
-   fetchLocationName(position.coords.latitude,position.coords.longitude);
+    setClickedLatLng(center);
+    fetchLocationName(position.coords.latitude, position.coords.longitude);
   }
   const Hidestyle = () => {
     setToggolestyle("hide")
@@ -73,7 +74,7 @@ function Loction(props) {
 
           <button type='button' className='btn-editeloction' onClick={Hidestyle}>
             <img src={LoctionIcon} alt="" />
-            Get a location
+            {language === "Ar" ? "احصل على موقع" : "Get a location"}
           </button>
         </div>
         <GoogleMap
@@ -86,7 +87,7 @@ function Loction(props) {
           }}
         />
 
-        </div>
+      </div>
     );
   };
 
@@ -94,28 +95,3 @@ function Loction(props) {
 }
 
 export default Loction;
-
-/*
-  const [ip, setIP] = useState('');
-  const getData = async () => {
-    const res = await axios.get('https://geolocation-db.com/json/')
-    console.log(res.data);
-  }
-  useEffect( () => {
-    getData()
-  }, [])
-
-  
-    const fetchLocation = async (l) => {
-      await fetch(
-        `https://geolocation-db.com/json/AIzaSyCxNmBqWMvjABSLzGtWOR5sUWDVlUnPHsw`
-      )
-        .then((response) => response.json())
-        .then((responseJson) => {
-          console.log(responseJson);
-          //setAddressrequest(responseJson.results[0].formatted_address);
-          //setAddress(responseJson.results[0].formatted_address);
-        });
-  
-      }
-*/
