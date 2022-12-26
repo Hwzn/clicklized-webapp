@@ -39,12 +39,13 @@ function ModalShare() {
                 className={copySuccess === 'Copied!' ? "btn btn-share-copy" : 'btn btn-share'}
                 onClick={copyToClipboard}>
                 {language === "Ar" ? "مشاركة" : "Share"}
-                
               </button>
             </div>
 
             <div className="oruse">
-              <span>Or use</span>
+              <span>
+                {language === "Ar" ? "أو من خلال" : "Or use"}
+              </span>
               <ul>
                 <li className='btn-whatsapp'>
                   <WhatsappShareButton
